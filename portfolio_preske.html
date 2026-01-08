@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard Preske - Lead Software QA Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero .title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .company {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .role {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .date {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .achievement {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .achievement::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .title {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 2rem;
+            color: white;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Richard Preske</h1>
+            <div class="title">Lead Software QA Engineer</div>
+            <p class="tagline">
+                Results-driven engineer with 10+ years of experience in quality assurance, 
+                test automation, and software development. Proven track record of reducing 
+                testing costs by 20% and ensuring regulatory compliance across gaming, 
+                government, and medical device sectors.
+            </p>
+            <div class="cta-buttons">
+                <a href="#experience" class="btn btn-primary">View Experience</a>
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Career Highlights</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20%</div>
+                    <div class="stat-label">Cost Reduction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Industries</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7+</div>
+                    <div class="stat-label">Programming Languages</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company">DS2</div>
+                            <div class="role">Test Engineer IV</div>
+                        </div>
+                        <div class="date">July 2024 - October 2024</div>
+                    </div>
+                    <div class="achievement">Conducted regression testing on JMPS (Joint Mission Planning Software) for military applications</div>
+                    <div class="achievement">Utilized Azure DevOps and SharePoint for project collaboration</div>
+                    <div class="achievement">Participated in Agile ceremonies including daily stand-ups and sprint planning</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company">Navarro Research and Engineering, Inc.</div>
+                            <div class="role">Software Coordinator</div>
+                        </div>
+                        <div class="date">September 2023 - May 2024</div>
+                    </div>
+                    <div class="achievement">Subcontractor for CNS at Y-12 National Security Complex (Department of Energy)</div>
+                    <div class="achievement">Performed Software Quality Assurance testing for custom and COTS software</div>
+                    <div class="achievement">Ensured compliance with federal requirements and conducted quality control checks</div>
+                    <div class="achievement">Managed software using SMAN for accurate lifecycle management</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company">Best Medical International, Inc.</div>
+                            <div class="role">Software Engineer</div>
+                        </div>
+                        <div class="date">April 2022 - September 2023</div>
+                    </div>
+                    <div class="achievement">Developed and debugged LabVIEW software for BG-75 biomarker medical equipment</div>
+                    <div class="achievement">Completed advanced coursework in LabVIEW FPGA and LabVIEW Real-Time</div>
+                    <div class="achievement">Conducted verification and validation of testing code and hardware</div>
+                    <div class="achievement">Collaborated with global teams in India on software development projects</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company">C2 Gaming (acquired by AGS)</div>
+                            <div class="role">Lead Quality Assurance Engineer</div>
+                        </div>
+                        <div class="date">September 2011 - June 2015</div>
+                    </div>
+                    <div class="achievement"><span class="highlight">Reduced software testing costs by 20%</span> by streamlining game release testing cycle</div>
+                    <div class="achievement">Led team of 3 QA engineers, overseeing project timelines and status reporting</div>
+                    <div class="achievement">Ensured regulatory compliance preventing critical issues including incorrect payouts</div>
+                    <div class="achievement">Developed comprehensive test cases for slot machine software across multiple platforms</div>
+                    <div class="achievement">Strengthened partnerships with independent test labs BMM and GLI</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company">Gaming Laboratories International</div>
+                            <div class="role">Senior Engineer</div>
+                        </div>
+                        <div class="date">July 2003 - October 2007</div>
+                    </div>
+                    <div class="achievement">Promoted to Senior Engineer after one year due to efficient testing capabilities</div>
+                    <div class="achievement">Tested slot machines for jurisdictional regulatory compliance and SAS/SDS protocols</div>
+                    <div class="achievement">Managed team of 2 Test Engineer II staff with daily progress monitoring</div>
+                    <div class="achievement">Designed Excel solutions improving testing efficiency and company revenue</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div>
+                            <div class="company">Bally Gaming, Inc.</div>
+                            <div class="role">Software Engineer I</div>
+                        </div>
+                        <div class="date">March 1998 - February 2003</div>
+                    </div>
+                    <div class="achievement">Promoted from Test Engineer after developing Visual Basic code with Microchip PIC controller</div>
+                    <div class="achievement">Created 5-Reel, 9-Line Video slot games using C and proprietary script language</div>
+                    <div class="achievement">Expanded product line with international team developing EURO denomination support</div>
+                    <div class="achievement">Traveled to Austria for GRIPS system training and technical assistance</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">Visual Basic</span>
+                    <span class="skill-tag">LabVIEW</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">C#</span>
+                </div>
+
+                <div class="skill-category">
+                    <h3>QA & Testing</h3>
+                    <span class="skill-tag">Manual Testing</span>
+                    <span class="skill-tag">Functional Testing</span>
+                    <span class="skill-tag">Regression Testing</span>
+                    <span class="skill-tag">Blackbox/Graybox/Whitebox</span>
+                    <span class="skill-tag">Smoke Testing</span>
+                    <span class="skill-tag">UAT</span>
+                    <span class="skill-tag">Code Analysis</span>
+                    <span class="skill-tag">SDLC</span>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <span class="skill-tag">Azure DevOps</span>
+                    <span class="skill-tag">Microsoft TFS</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Bitbucket</span>
+                    <span class="skill-tag">Visual Studio</span>
+                    <span class="skill-tag">SharePoint</span>
+                    <span class="skill-tag">VirtualBox</span>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Methodologies</h3>
+                    <span class="skill-tag">Agile</span>
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">Kanban</span>
+                    <span class="skill-tag">SDLC</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="company">BG-75 Biomarker Medical Device System</div>
+                    <div class="role">LabVIEW Development</div>
+                    <div class="achievement">Developed software defect fixes for controlling the BG-75 biomarker medical device system (cancer diagnostic software) using LabVIEW</div>
+                    <div class="achievement">Collaborated with global team in India to build and troubleshoot system software</div>
+                    <div class="achievement">Developed test plans to validate code functionality</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="company">Automated Voltage Control (AVC) System</div>
+                    <div class="role">LabVIEW Automation</div>
+                    <div class="achievement">Developed AVC system for oscillator manufacturing company to automate production processes</div>
+                    <div class="achievement">System determines minimum/maximum voltage values for specified tuning range for up to 8 oscillators simultaneously</div>
+                    <div class="achievement">Automated output to spreadsheet program that calculates resistor R3, R4 values for correct varactor biasing</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="company">Automated Coin Hopper Tester</div>
+                    <div class="role">Visual Basic & Embedded Systems</div>
+                    <div class="achievement">Developed automated tester for manufacturing personnel with user interface coded in Visual Basic</div>
+                    <div class="achievement">Integrated embedded MicroChip PIC controller for hardware communication</div>
+                    <div class="achievement">Streamlined manufacturing testing process and reduced manual testing time</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="company">5-Reel, 9-Line Video Slot Games</div>
+                    <div class="role">C Programming & Game Development</div>
+                    <div class="achievement">Created video slot games using C code and proprietary script language on GameMaker platform (V7000)</div>
+                    <div class="achievement">Performed software defect fixes on both video and mechanical reel slot platforms</div>
+                    <div class="achievement">Ensured game compliance with regulatory requirements</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="company">Test Equipment Design & Fabrication</div>
+                    <div class="role">AutoCAD & Hardware Design</div>
+                    <div class="achievement">Designed and fabricated test equipment to test slot machine components</div>
+                    <div class="achievement">Created wiring diagrams using AutoCAD for simulator design (group effort)</div>
+                    <div class="achievement">Maintained equipment and supported day-to-day production efforts</div>
+                    <div class="achievement">Developed parts database using MS Access for manufacturing test team</div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="company">Python Development Projects</div>
+                    <div class="role">Self-Taught Python Programming</div>
+                    <div class="achievement">Developed simple slot machine game demonstrating game logic and user interface design</div>
+                    <div class="achievement">Created file comparison tool for efficient file analysis</div>
+                    <div class="achievement">Learned Python through self-taught methods and online courses</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="experience-card">
+                <div class="company">Bachelor of Electrical Engineering</div>
+                <div class="role">Magna Cum Laude - Gannon University, Erie, PA</div>
+                <div style="margin-top: 1rem;">
+                    <div class="achievement">PC Specialist Certificate - Tri-State Business Institute</div>
+                    <div class="achievement">Microchip Intermediate PIC 201 Course, San Jose, CA</div>
+                    <div class="achievement">Autodesk Training Certificate, Holman's of Nevada, Inc.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="contact">
+        <div class="container">
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    Open to opportunities in software quality assurance, test automation, and software development
+                </p>
+                <div class="contact-links">
+                    <a href="tel:702-501-8938" class="contact-link">📞 (702) 501-8938</a>
+                    <a href="mailto:rpreske@gmail.com" class="contact-link">✉️ rpreske@gmail.com</a>
+                    <a href="https://linkedin.com/in/rpreske" target="_blank" class="contact-link">💼 LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.experience-card, .stat-card, .skill-category').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
